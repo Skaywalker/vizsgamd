@@ -10,6 +10,14 @@
 - `.forEach()` - végigiterál egy tömbön
 - `.find()` - megkeresi a tömbben az első elemet
 - `.split()` - szétválasztja a stringet, atributumként megadott karakter alapján. Default: minden karaktert szétválaszt
+### Javascript helper
+ - `random szám` 
+   - `function rand(min, max) {
+     return Math.floor(Math.random() * (max - min +1))+min;
+     }`
+   - `rand(1, 10);` - 1 és 10 közötti random szám
+      
+
 
 ### Matematikai fogalmak
 - `Math.PI` - pi értéke
@@ -103,5 +111,3 @@
 - `db.collection.getShardVersion()` - shard verzió lekérdezése
 - `db.collection.getShardMap()` - shard térkép lekérdezése
 - `db.collection.getShardTagRange()` - shard tag tartomány lekérdezése
-
-- 
