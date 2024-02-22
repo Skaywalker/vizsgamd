@@ -1,0 +1,451 @@
+Feladatok 
+1) Hozzon létre egy egyszerű szervert, NodeJS segítségével, melyre az következő feltételek 
+legyenek igazak 
+a) Az IP cím, amiről elérjük a szervert a 127.0.0.1 legyen. b) A port, amit használ a folyamat során a 8080-es legyen! c) A státuszkód értéke 200 legyen! d) A szerver futása esetén az oldalon a „Junior Frontend Vizsga” szöveg jelenjen meg e) A csatlakozás után jelenjen meg "A vizsga szerver a http://127.0.0.1:8080/ címen elérhető" 
+szöveg  
+
+const http = require('http');
+
+const hostname = "127.0.0.1";
+const port = 8080;
+
+const server = http.createServer((req, res) => {
+	res.statusCode = 200;
+    res.setHeader('Content-Type' , 'text/plain');  
+    res.end ("Junior Frontend Vizsga");
+});
+
+server.listen(port, hostname, () => { 
+    console.log ('vizsga szerver a http://127.0.0.1:8080/ címen elérhető');
+
+});
+
+1. feladat 
+Készíts egy függvényt, ami egy paraméterként megkapott szövegben egy másik paraméterként 
+megkapott, betűket tartalmazó tömb segítségével megmondja. 
+A tömbben található betűk hányszor fordulnak elő az adott szövegben. 
+Függvény neve: KivalasztottBetuk() Paraméter(ek): vizsgaltSzoveg (szöveg típusú), kivalasztottBetuk(betűket tartalmazó tömb) Visszatérési értéke: szám típusú érték
+ 
+2. feladat 
+Készíts egy függvényt, ami három paraméterként megkapott számról eldönti azok számtani sorozatot 
+alkotnak-e, a feldolgozáskor számít a számok sorrendje is, tehát az első értéket követi a második, és 
+azt a harmadik! Számtani sorozat az, ahol az egymás utáni elemek közti különbség azonos. 
+Függvény neve: Szamtani()  Paraméter(ek): elsoErtek, masodikErtek, harmadikErtek (szám típusú értékek)  Visszatérési értéke: logikai érték  
+
+3. feladat 
+Készíts egy függvényt, ami egy paraméterként megkapott 0-100 közötti pontszámról megmondja, 
+mennyi a hozzá tartozó érdemjegy. 
+A ponthatár az alábbi: 
+Alsó határ Felső határ Szöveges vissza térési érték 0 49 Elégtelen 50 59 Elégséges 60 69 Közepes 70 79 Jó 80 100 Jeles  
+Függvény neve: VizsgaJegy() Paraméter(ek): osszPont(szám típusú érték) Visszatérési értéke: szöveges típusú érték 
+ 
+function KiválasztottBetuk(vizsgaltSzoveg: string, kiválasztottBetuk: string[]): number {
+    let betukSzama:number = 0;
+       for(let i:number=0;i<vizsgaltSzoveg.length;i++){
+		 for(let j:number=0;i<kiválasztottBetuk.length;j++){
+		 if(vizsgaltSzoveg[i]==kiválasztottBetuk[j]){
+		 }
+		 }
+	}
+	return betukSzama;
+}	
+
+function SzamTani(elsoErtek: number,masodikErtek : number,harmadikErtek : number):boolean {
+    let elsoKulonbseg: Number=masodikErtek - elsoErtek;
+	let masodikKulonbseg: Number=harmadikErtek - masodikErtek;
+	if (elsoKulonbseg==masodikKulonbseg){
+	return true;
+	}
+	else{
+	return false;
+	}
+}
+
+function Vizsgajegy(osszPont: number): string {                                                               
+    if (osszPont >= 0 && osszPont <= 49) {
+        return "Elégtelen";
+    } else if (osszPont >= 50 && osszPont <= 59) {
+        return "Elégséges";
+    } else if (osszPont >= 60 && osszPont <= 69) {
+        return "Közepes";
+    } else if (osszPont >= 70 && osszPont <= 79) {
+        return "Jó";
+    } else if (osszPont >= 80 && osszPont <= 100) {
+        return "Jeles";
+    } else {
+        return "Hibás pontszám";
+    }
+}
+
+function VizsgaJegy(osszPont: number): string {
+    if (osszPont >= 0 && osszPont <= 49) {
+        return "Elégtelen";
+    } else if (osszPont >= 50 && osszPont <= 59) {
+        return "Elégséges";
+    } else if (osszPont >= 60 && osszPont <= 69) {
+        return "Közepes";
+    } else if (osszPont >= 70 && osszPont <= 79) {
+        return "Jó";
+    } else if (osszPont >= 80 && osszPont <= 100) {
+        return "Jeles";
+    } else {
+        return "Hibás pontszám";
+    }
+}
+
+// Példahívások
+console.log(VizsgaJegy(75)); // Jó
+console.log(VizsgaJegy(30)); // Elégtelen
+console.log(VizsgaJegy(101)); // Hibás pontszám
+
+
+Egy angulár projektet a ng new parancsal tudsz létrehozni a terminálban. A parancs után meg kell adnod a projekt nevét, ami ebben az esetben vizsga. Tehát így néz ki a parancs: ng new vizsga
+Egy komponenst a ng generate component parancsal tudsz létrehozni a terminálban. A parancs után meg kell adnod a komponens nevét, ami ebben az esetben vizsgafeladat. Tehát így néz ki a parancs: ng generate component vizsgafeladat
+Az elemek routingját a app-routing.module.ts fájlban tudod beállítani. Ehhez importálnod kell a RouterModule és a Routes modulokat az @angular/router csomagból. Aztán létre kell hoznod egy Routes típusú tömböt, amiben megadod az útvonalakat és a hozzájuk tartozó komponenseket. A /vizsgafeladat útvonalhoz a VizsgafeladatComponent-et kell rendelned. Ha nem írsz be semmit, vagy rosszul írod be az útvonalat, akkor a redirectTo opcióval átirányíthatod a felhasználót a /vizsgafeladat útvonalra. Végül a RouterModule.forRoot() metódussal exportálhatod a routing modult. Így néz ki a kód:
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { VizsgafeladatComponent } from './vizsgafeladat/vizsgafeladat.component';
+
+const routes: Routes = [
+  { path: 'vizsgafeladat', component: VizsgafeladatComponent },
+  { path: '', redirectTo: '/vizsgafeladat', pathMatch: 'full' },
+  { path: '**', redirectTo: '/vizsgafeladat' }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+A Bootstrap-et a styles.css fájlban tudod importálni, ha hozzáadsz egy @import utasítást a fájl elejére. A Bootstrap weboldaláról másold be a megfelelő linket, ami a CSS részét tartalmazza. Így néz ki a kód:
+CSS
+
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+
+/* You can add global styles to this file, and also import other style files */
+Mesterséges intelligencia által létrehozott kód. Ellenőrizze és körültekintően használja. További információ a GYIK-ről.
+Hat beviteli mezőt a vizsgafeladat.component.html fájlban tudsz létrehozni, ha használod a Bootstrap form osztályait. A beviteli mezőknek input típusú HTML elemeknek kell lenniük, amiknek meg kell adnod egy id, egy name, egy type és egy [(ngModel)] attribútumot. Az id és a name attribútumokkal azonosíthatod a mezőket, a type attribútummal megadhatod, hogy milyen típusú adatot fogadnak el, az [(ngModel)] attribútummal pedig kétirányú adatkötést hozhatsz létre a komponens osztályával. A beviteli mezőket div elemekbe kell csomagolnod, amiknek a form-group és a col-md-2 osztályokat kell hozzárendelned. A form-group osztály a Bootstrap formázását biztosítja, a col-md-2 osztály pedig a Bootstrap grid rendszerét használja, hogy hat egyenlő oszlopba rendezze a mezőket. A beviteli mezők fölé kell írnod egy label elemet is, amiben megadod a mező nevét. Így néz ki a kód:
+HTML
+
+<div class="form-group col-md-2">
+  <label for="htmlModul">HTML modul</label>
+  <input id="htmlModul" name="htmlModul" type="number" [(ngModel)]="htmlModul" class="form-control">
+</div>
+<div class="form-group col-md-2">
+  <label for="bootstrapModul">Bootstrap modul</label>
+  <input id="bootstrapModul" name="bootstrapModul" type="number" [(ngModel)]="bootstrapModul" class="form-control">
+</div>
+<div class="form-group col-md-2">
+  <label for="javaScriptModul">JavaScript modul</label>
+  <input id="javaScriptModul" name="javaScriptModul" type="number" [(ngModel)]="javaScriptModul" class="form-control">
+</div>
+<div class="form-group col-md-2">
+  <label for="typeScriptModul">TypeScript modul</label>
+  <input id="typeScriptModul" name="typeScriptModul" type="number" [(ngModel)]="typeScriptModul" class="form-control">
+</div>
+<div class="form-group col-md-2">
+  <label for="angularModul">Angular modul</label>
+  <input id="angularModul" name="angularModul" type="number" [(ngModel)]="angularModul" class="form-control">
+</div>
+<div class="form-group col-md-2">
+  <label for="serverModul">Server modul</label>
+  <input id="serverModul" name="serverModul" type="number" [(ngModel)]="serverModul" class="form-control">
+</div>
+Mesterséges intelligencia által létrehozott kód. Ellenőrizze és körültekintően használja. További információ a GYIK-ről.
+Egy új bekezdést a vizsgafeladat.component.html fájlban tudsz létrehozni, ha használod a p HTML elemet. A bekezdésben meg kell jelenítened a mezők értékének összegét, amit egy változóval tudsz reprezentálni. A változót a {{ }} szintaxis segítségével tudod megjeleníteni a HTML-ben. A változót a vizsgafeladat.component.ts fájlban kell létrehoznod és frissítened, ha a mezők értéke változik. Ehhez használhatod az ngOnInit() és az ngOnChanges() metódusokat, amik az OnInit és az OnChanges interfészekből származnak. Az ngOnInit() metódus akkor fut le, amikor a komponens inicializálódik, az ngOnChanges() metódus pedig akkor, amikor a komponens bemenetei megváltoznak. A mezők értékének összegét egy sum nevű változóban tárolhatod, amit a calculateSum() nevű metódussal számíthatsz ki. A calculateSum() metódusnak össze kell adnia a hat mező értékét, és vissza kell adnia az eredményt. Így néz ki a kód:
+import { Component, OnInit, OnChanges } from '@angular/core';
+
+@Component({
+  selector: 'app-vizsgafeladat',
+  templateUrl: './vizsgafeladat.component.html',
+  styleUrls: ['./vizsgafeladat.component.css']
+})
+export class VizsgafeladatComponent implements OnInit, OnChanges {
+
+  // A hat mező értékét tároló változók
+  htmlModul: number;
+  bootstrapModul: number;
+  javaScriptModul: number;
+  typeScriptModul: number;
+  angularModul: number;
+  serverModul: number;
+
+  // A mezők értékének összegét tároló válto
+  
+  Egy gombot a vizsgafeladat.component.html fájlban tudsz létrehozni, ha használod a button HTML elemet. A gombnak meg kell adnod egy type, egy class és egy (click) attribútumot. A type attribútummal megadhatod, hogy milyen típusú gomb legyen, a class attribútummal pedig a Bootstrap stílusát tudod alkalmazni. A (click) attribútummal pedig event bindingot hozhatsz létre, amivel megadhatod, hogy melyik függvény fusson le, ha a gombra kattintanak. A függvény neve ebben az esetben EredmenyMentes(). A gomb szövegét a button elem közé írhatod. Így néz ki a kód:
+HTML
+
+<button type="button" class="btn btn-primary" (click)="EredmenyMentes()">Eredmény mentése</button>
+Mesterséges intelligencia által létrehozott kód. Ellenőrizze és körültekintően használja. További információ a GYIK-ről.
+Az EredmenyMentes() függvényt a vizsgafeladat.component.ts fájlban tudod megírni. A függvény feladata, hogy értékelje ki az input mezők értékének összegét, és megjelenítse az eredményt egy új bekezdésben. Ehhez használhatod a sum változót, amit már korábban létrehoztál, és a ngIf direktívát, amivel feltételes megjelenítést tudsz elérni. A ngIf direktívát a p HTML elemre kell alkalmaznod, és meg kell adnod egy logikai kifejezést, ami alapján eldönti, hogy megjelenítse-e vagy sem az elemet. A logikai kifejezésben össze kell hasonlítanod a sum változót a különböző pontszámokkal, és meg kell adnod a megfelelő szöveget, amit meg akarsz jeleníteni. Így néz ki a kód:
+EredmenyMentes() {
+  // A bekezdés, amiben megjelenik az eredmény
+  <p *ngIf="sum < 50">Sikertelen vizsga</p>
+  <p *ngIf="sum >= 50 && sum < 60">Sikeres vizsga 2-es</p>
+  <p *ngIf="sum >= 60 && sum < 70">Sikeres vizsga 3-as</p>
+  <p *ngIf="sum >= 70 && sum < 80">Sikeres vizsga 4-es</p>
+  <p *ngIf="sum >= 80">Sikeres vizsga 5-ös</p>
+}
+
+Ahhoz, hogy ellenőrizd, hogy van-e kitöltve minden mező, használhatod a required attribútumot, amit hozzá kell adnod az input elemekhez. A required attribútum azt jelenti, hogy a mező nem lehet üres. Ha valamelyik mező üres, akkor a gombra kattintva nem fog lefutni az EredmenyMentes() függvény, hanem felugrik egy hibaüzenet, ami figyelmezteti a felhasználót, hogy töltse ki a mezőt. Így néz ki a kód:
+HTML
+
+<input id="htmlModul" name="htmlModul" type="number" [(ngModel)]="htmlModul" class="form-control" required>
+<input id="bootstrapModul" name="bootstrapModul" type="number" [(ngModel)]="bootstrapModul" class="form-control" required>
+<input id="javaScriptModul" name="javaScriptModul" type="number" [(ngModel)]="javaScriptModul" class="form-control" required>
+<input id="typeScriptModul" name="typeScriptModul" type="number" [(ngModel)]="typeScriptModul" class="form-control" required>
+<input id="angularModul" name="angularModul" type="number" [(ngModel)]="angularModul" class="form-control" required>
+<input id="serverModul" name="serverModul" type="number" [(ngModel)]="serverModul" class="form-control" required>
+Mesterséges intelligencia által létrehozott kód. Ellenőrizze és körültekintően használja. További információ a GYIK-ről.
+Ahhoz, hogy készíts egy log-ot egy string típusú tömbbe, létre kell hoznod egy új változót a vizsgafeladat.component.ts fájlban, ami egy üres tömb lesz. A változó neve legyen log. A log tömbbe minden alkalommal, amikor az EredmenyMentes() függvény lefut, hozzá kell adnod egy új elemet, ami tartalmazza a mezők értékét, az összeget és az eredményt. Ehhez használhatod a push() metódust, ami a tömb végére illeszti az új elemet. Az elemet egy string formájában tudod megadni, amiben a + operátorral összefűzöd a különböző változókat és szövegeket. Így néz ki a kód:
+
+// A log tömb létrehozása
+log: string[] = [];
+
+EredmenyMentes() {
+  // A log tömbhöz hozzáadni egy új elemet, ami tartalmazza a mezők értékét, az összeget és az eredményt
+  log.push("HTML modul: " + htmlModul + ", Bootstrap modul: " + bootstrapModul + ", JavaScript modul: " + javaScriptModul + ", TypeScript modul: " + typeScriptModul + ", Angular modul: " + angularModul + ", Server modul: " + serverModul + ", Összesen: " + sum + ", Eredmény: " + eredmeny);
+}
+
+Ahhoz, hogy megjelenítsd a log-ot a dokumentum végén, használhatod az ngFor direktívát, amivel egy listát tudsz létrehozni a tömb elemeiből. Az ngFor direktívát egy li HTML elemre kell alkalmaznod, és meg kell adnod egy ciklusváltozót, ami végigmegy a tömb elemein. A ciklusváltozót a {{ }} szintaxis segítségével tudod megjeleníteni a HTML-ben. Az li elemet egy ul elembe kell csomagolnod, aminek meg kell adnod egy class attribútumot, hogy a Bootstrap stílusát használd. Így néz ki a kód:
+
+HTML
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let item of log">{{ item }}</li>
+</ul>
+
+
+
+Html feladat
+
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HtmlCssModul.css">
+    <title>HTML Unit teszt feladat</title>
+</head>
+
+<body>
+    <!--A feladat megoldását a következő részben készítse el-->
+    
+
+
+<div id="igazito">
+
+  <h1>Junior Frontend Fejlesztő online tesztsor</h1>
+
+
+    <p style="text-indent: 10px" >A junior frontend fejlesztő olyan személy, aki kezdő szinten dolgozik a webes fejlesztés területén, különös hangsúlyt fektetve a felhasználói felület (UI) kialakítására és az ügyféloldali fejlesztésre. A junior frontend fejlesztők általában rendelkeznek alapvető ismeretekkel <b>HTML</b>, <b>CSS</b> és <b>JavaScript</b> terén, valamint ismerik a böngészők működését és az alapvető webfejlesztési eszközöket. Ők azok, akik segítik az alkalmazások és weboldalak külcsínének és interaktivitásának létrehozását, és képesek együttműködni a tervezőkkel és a fejlesztőkkel, hogy a felhasználói élményt fokozzák.
+        <img title="Online teszt" src="test_logo.jpg" alt="Online teszt">
+    </p>
+    <h2>A tesztsorok az alábbi modulokból épülnek fel:</h2>
+    <ul>
+        <li>HTML leíró nyelv</li>
+        <li>CSS leíró nyelv</li>
+        <li>Boostrap keretrendszer</li>
+        <li>JavasScript Programozási nyelv</li>
+        <li>TypeScript Programozási nyelv</li>
+        <li>Verziókövető alkalmazás alapismeretek</li>
+        <li>Angular keretrendszer alapjai</li>
+        <li>Adatbázis kezelés alapismeretek</li>
+    </ul>
+
+    <p style="text-indent: 10px">Összesen 40 db feleletválasztásos tesztkérdés van, amiből egyszerre csak az egyik megoldás jó, és itt kell elérni legalább az 51%-ot, azaz legalább 21 kérdésre sikeresen kell válaszolni.
+    </p>
+
+
+    További források
+    <p class="forras"><a href="https://en.wikipedia.org/wiki/Front-end_web_development" target="_blank">
+        Frontend fejlesztő
+    </a></p>
+
+    <p class="forras"><a  href="https://en.wikipedia.org/wiki/Web_developer" target="_blank">Web fejlesztő</a></p>
+</div>
+
+Bootstrap feladat:
+
+ <div class="container">
+        <h1 class="text-center mt-1 mb-5">Junior Frontedn fejlesztő gyakorlati vizsga</h1>
+        <table class="table table-striped table-hover" id="vizsgainfo">
+            <thead class="table-primary" >
+            <tr>
+                <th>Modul neve</th>
+                <th>Szerezhető pontszám</th>
+                <th>Időtartam</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>HTML & CSS modul</td>
+                <td>15 pont</td>
+                <td>30 perc</td>
+            </tr>
+            <tr>
+                <td> Bootstrap modul</td>
+                <td> 15 pont</td>
+                <td>30 perc</td>
+            </tr>
+            <tr>
+                <td> JavaScript modul</td>
+                <td>20 pont</td>
+                <td>30 perc</td>
+            </tr>
+            <tr>
+                <td>TypeScript modul</td>
+                <td>20 pont</td>
+                <td>30 perc</td>
+            </tr>
+            <tr>
+                <td> Angular modul </td>
+                <td>15 pont</td>
+                <td>30 perc</td>
+            </tr>
+            <tr>
+                <td>Szerver modul</td>
+                <td>15 pont</td>
+                <td>30 perc</td>
+            </tr>
+
+            </tbody>
+            <tfoot class="table-info">
+            <tr>
+                <td>Összesen</td>
+                <td>100 pont</td>
+                <td>180 perc</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+	
+	 <!--TESZTEK eredményei-->
+    <table id="testTable" class="table table-dark">
+        <caption>Egységtesztek eredményei</caption>
+        <thead>
+            <tr>
+                <th>Teszt neve</th>
+                <th>Teszt eredménye</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script src="Bootstrap_teszt.js"></script>
+</body>
+
+</html>
+	
+	Javascript Feladat
+	
+	Osztók száma: Készíts egy függvényt, amely egy paraméterként megkapott vizsgálandó számról megmondja, hány darab osztója van. Az osztók olyan számok, amelyek az adott számot maradék nélkül osztják. A függvény neve legyen OsztokSzama(), és a paraméter legyen vizsgaltSzam.
+JavaScript
+
+function OsztokSzama(vizsgaltSzam) {
+    let osztok = 0;
+    for (let i = 1; i <= vizsgaltSzam; i++) {
+        if (vizsgaltSzam % i === 0) {
+            osztok++;
+        }
+    }
+    return osztok;
+}
+
+Páratlan számok listája: Készíts egy függvényt, amely egy paraméterként megkapott számokat tartalmazó tömbből kiválasztja a páratlan számokat, majd ezeket egy új tömbként adja vissza. A függvény neve legyen ParatlanLista(), és a paraméter legyen vizsgaltTomb.
+JavaScript
+
+function ParatlanLista(vizsgaltTomb) {
+    const paratlanok = vizsgaltTomb.filter(szam => szam % 2 !== 0);
+    return paratlanok;
+}
+
+Vizsga eredmény: A mellékelt objektum (vizsgazokAdatai.js) alapján határozd meg, hogy az adott névhez tartozó vizsgák összes pontszáma mennyi. A függvény neve legyen VizsgaEredmeny(), és a paraméter legyen a név (nev).
+JavaScript
+
+const vizsgazokAdatai = {
+nev: "Koax Ábel",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 20,
+    typeScriptVizsgaresz: 15,
+    angularVizsgaresz: 10,
+    serverVizsgaresz: 15
+},
+{
+    nev: "Meg Győző",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 20,
+    typeScriptVizsgaresz: 20,
+    angularVizsgaresz: 15,
+    serverVizsgaresz: 15
+},
+{
+    nev: "Fejet Lenke",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 5,
+    typeScriptVizsgaresz: 5,
+    angularVizsgaresz: 5,
+    serverVizsgaresz: 5
+},
+{
+    nev: "Vak Cina",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 20,
+    typeScriptVizsgaresz: 20,
+    angularVizsgaresz: 10,
+    serverVizsgaresz: 10
+},
+{
+    nev: "Akciós Áron",
+    htmlVizsgaresz: 10,
+    bootstrapVizsgaresz: 10,
+    javaScriptVizsgaresz: 10,
+    typeScriptVizsgaresz: 10,
+    angularVizsgaresz: 10,
+    serverVizsgaresz: 10
+},
+{
+    nev: "Boro Zoltán",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 15,
+    typeScriptVizsgaresz: 15,
+    angularVizsgaresz: 10,
+    serverVizsgaresz: 10
+},
+{
+    nev: "Eszet Lenke",
+    htmlVizsgaresz: 5,
+    bootstrapVizsgaresz: 5,
+    javaScriptVizsgaresz: 5,
+    typeScriptVizsgaresz: 5,
+    angularVizsgaresz: 5,
+    serverVizsgaresz: 5
+},
+{
+    nev: "Békés Csaba",
+    htmlVizsgaresz: 15,
+    bootstrapVizsgaresz: 15,
+    javaScriptVizsgaresz: 20,
+    typeScriptVizsgaresz: 20,
+    angularVizsgaresz: 15,
+    serverVizsgaresz: 15
+   
+};
+
+function VizsgaEredmeny(nev) {
+    const eredmeny = vizsgazokAdatai[nev];
+    return eredmeny || 0; // Ha nincs ilyen név, akkor 0-t adunk vissza
+}
+
+
+
+	
